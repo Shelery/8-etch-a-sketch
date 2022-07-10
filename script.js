@@ -9,9 +9,28 @@ let value = range.addEventListener('click', ()=>{
     // remove grid of previous input
     removeGrids();
     value = range.value;
-    console.log(value)
+    console.log(value);
     //return value;
-    
+    createGrids(value);
+
+})
+// JS function 
+//      to dinamically create 25x25 grid
+
+
+
+
+// Make grids colored when mouse down
+//      using classList.switch(?)
+// Randomise color - IDEA pride month edition - colors always change
+
+// FUNCTIONS
+function removeGrids(){
+    while (canvas.firstChild){
+        canvas.removeChild(canvas.firstChild);
+     }
+}
+function createGrids(value){
     for (let i = 0; i < value; i++){
         const row = document.createElement('div');
         row.classList.add('row');
@@ -22,20 +41,4 @@ let value = range.addEventListener('click', ()=>{
         }
         canvas.appendChild(row);
 }
-})
-// JS function 
-//      to dinamically create 25x25 grid
-
-
-
-
-// Make grids colored when mouse down
-//      using classList.switch(?)
-// Randomise color
-
-// FUNCTIONS
-function removeGrids(){
-    while (canvas.firstChild){
-        canvas.removeChild(canvas.firstChild);
-     }
 }
