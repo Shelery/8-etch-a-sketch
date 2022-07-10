@@ -33,6 +33,9 @@ body{
     border: .1px #a1cdff solid; 
     flex: 1;
 }
+.grid:hover{
+    background-color: #0077ff;
+}
 h1{
     text-align: center;
 }
