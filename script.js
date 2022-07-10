@@ -14,6 +14,14 @@ for (let i = 0; i < 25; i++){
 }
 // Connect it to the input of #range
 //      NOTE its return value is string
+const range = document.querySelector('#range');
+let value = range.addEventListener('click', ()=>{
+    value = range.value;
+    console.log(value)
+    return value;
+})
+
+
 // Make grids colored when mouse down
 //      switch
 // Randomise color
