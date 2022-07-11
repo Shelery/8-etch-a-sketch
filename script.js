@@ -1,33 +1,26 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    
-
-//const canvas = document.querySelector('#canvas');
-// Connect it to the input of #range
-//      NOTE its return value is string
-//      remove grids of previous input
-//     LATER:
-//      remove colored grids of previous input
+    //const canvas = document.querySelector('#canvas');
     const range = document.querySelector('#range');
     let value = range.value;
 
+    // Create initial grid
     createGrids(value);
     let grids = document.querySelectorAll('.grid')
     grids.forEach(grid => grid.addEventListener('mousedown', paintGrids));
 
-
+    // Adjust grids to range value
     range.addEventListener('click', ()=>{
         // remove grid of previous input
         removeGrids();
         value = range.value;
         //return value;
         createGrids(value);
+        grids = document.querySelectorAll('.grid')
+        grids.forEach(grid => grid.addEventListener('mousedown', paintGrids));
     })
 
 
-});     
-
-// [] Make grids colored when mouse down
-//      using classList.switch(?)
+});
 
 // []Randomise color - IDEA pride month edition - colors always change
 
@@ -44,10 +37,9 @@ function createGrids(value){
             row.appendChild(grid);
         }
         canvas.appendChild(row);
-        
+    }
 }
-    
-}
+
 function removeGrids(){
     while (canvas.firstChild){
         canvas.removeChild(canvas.firstChild);
@@ -57,7 +49,7 @@ function removeGrids(){
 function paintGrids(e){
     let grids = document.querySelectorAll('.grid');
     // Paint clicked grid
-    e.target.setAttribute('style', 'background-color: black;')
+    paintGrid(e);
     
     // Paint hovered grids
     //NOTE: there is paintGrid and paintGrids!
@@ -67,7 +59,7 @@ function paintGrids(e){
      };
      // Stop painting when mouse up
      grids.forEach(grid => grid.addEventListener('mouseup', stopPainting));
-     function stopPainting(e) {
+     function stopPainting() {
         grids.forEach(grid => grid.removeEventListener('mouseover', paintGrid))
     };
 }
