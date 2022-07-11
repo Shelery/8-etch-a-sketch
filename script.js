@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // remove grid of previous input
         removeGrids();
         value = range.value;
-        //return value;
+        // Create grid according to range input
         createGrids(value);
         grids = document.querySelectorAll('.grid')
         grids.forEach(grid => grid.addEventListener('mousedown', paintGrids));
@@ -55,7 +55,8 @@ function paintGrids(e){
     //NOTE: there is paintGrid and paintGrids!
     grids.forEach(grid => grid.addEventListener('mouseover', paintGrid));
     function paintGrid(e){
-        e.target.setAttribute('style', 'background-color: black;')
+        e.target.setAttribute('style',
+         'background-color: darkslateblue; border: .1px darkslateblue solid;')
      };
      // Stop painting when mouse up
      grids.forEach(grid => grid.addEventListener('mouseup', stopPainting));
