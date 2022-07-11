@@ -12,7 +12,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     createGrids(value);
     let grids = document.querySelectorAll('.grid')
-    grids.forEach(grid => grid.addEventListener('mousedown', paintGrid));
+    grids.forEach(grid => grid.addEventListener('mousedown', paintGrids));
+
 
     range.addEventListener('click', ()=>{
         // remove grid of previous input
@@ -53,16 +54,23 @@ function removeGrids(){
      }
 }
 
-function paintGrid(e){
-    e.target.setAttribute('style', 'background-color: black;')
+function paintGrids(e){
     let grids = document.querySelectorAll('.grid');
-    grids.forEach(grid => grid.addEventListener('mouseover', ()=>{
-        grid.setAttribute('style', 'background-color: black;')
-     }));
-    //grids.forEach(grid => grid.addEventListener('mouseover', paint()));
-    // grids.forEach(grid => grid.addEventListener('mouseup', (e)=> {
-    //     grid.removeEventListener('mouseover')
-    // }));
+    // Paint clicked grid
+    e.target.setAttribute('style', 'background-color: black;')
+    
+    // Paint hovered grids
+    //NOTE: there is paintGrid and paintGrids!
+    grids.forEach(grid => grid.addEventListener('mouseover', paintGrid));
+    function paintGrid(e){
+        e.target.setAttribute('style', 'background-color: black;')
+     };
+     // Stop painting when mouse up
+     grids.forEach(grid => grid.addEventListener('mouseup', stopPainting));
+     function stopPainting(e) {
+        grids.forEach(grid => grid.removeEventListener('mouseover', paintGrid))
+    };
 }
 // DOESNT WORK ON DIFFERENT GRIDS
 // not that it worked anyways... i couldnt remove anonym function
+// Hey! no worries, yesterday me, i fixed at least that one :)
